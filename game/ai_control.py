@@ -107,6 +107,6 @@ def king(user_input, flag1, flag2, flag3): # userinput, flag1(看病), flag2(料
         return result["message"], result["flag1"], result["flag2"], result["flag3"]
     
     except:
-        return False, "(大臣は困惑している...)"
+        return False, "(王は困惑している...)"
     
 
