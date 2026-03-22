@@ -1,5 +1,8 @@
+
 from django.shortcuts import render
 from django.views import View
+from django.http import JsonResponse
+from .models import Texts
 
 class StartView(View):
     def get(self, request):
@@ -36,3 +39,12 @@ class EpilogueView(View):
         return render(request, "game/epilogue.html")
     
 epilogue = EpilogueView.as_view()
+
+class DialogueView(View):
+    def post(self, request, stage_tag):
+        queryset = Texts.objects.filter(stage_tag=stage_tag).order_by('order')
+        dialogue_list = [item.content for item in queryset]
+        
+        return JsonResponse({
+            'dialogues': dialogue_list
+        })
