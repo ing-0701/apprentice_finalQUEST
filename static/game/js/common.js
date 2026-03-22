@@ -40,6 +40,8 @@ class DialogueManager {
     }
 
     displayNext() {
+        console.log("クリックされました！現在のインデックスは:", this.currentIndex);
+
         if (this.currentIndex < this.dialogues.length) {
             const content = this.dialogues[this.currentIndex];
             document.getElementById('dialogue-text').innerText = content;
