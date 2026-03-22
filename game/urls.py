@@ -10,4 +10,5 @@ urlpatterns = [
     path("/stage2", views.stage2, name="stage2"),
     path("/stage3", views.stage3, name="stage3"),
     path("/epilogue", views.epilogue, name="epilogue"),
+    path('api/dialogue/<str:stage_tag>/', views.DialogueView.as_view(), name='dialogue_api'),
 ]
