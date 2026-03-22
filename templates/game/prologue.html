@@ -4,13 +4,31 @@
         <meta charset="UTF-8" />
         <title>プロローグ画面</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            /* セリフを見やすくするための簡単な装飾 */
+            #dialogue-box {
+                min-height: 100px;
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                cursor: pointer; /* クリックできることを示す */
+            }
+        </style>
     </head>
-    <body>
+    <body class="container mt-5">
+        {% csrf_token %}
         <h1>プロローグ画面</h1>
-        <p></p>
-        <h2>ここにテキスト</h2>
-        <a href="{% url 'game:stage1' %}" class="btn btn-primary">城へ向かおう！</a>
-    </body>
+        
+        <div id="dialogue-box">
+            <p id="dialogue-text" class="fs-4">画面をクリックして物語を進めてね</p>
+        </div>
+
+        <div id="next-action" style="display: none;">
+            <a href="{% url 'game:stage1' %}" class="btn btn-primary btn-lg">城へ向かおう！</a>
+        </div>
+
+        </body>
 </html>
 
 <!-- 
