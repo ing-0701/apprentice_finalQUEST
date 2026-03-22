@@ -13,7 +13,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-// --- [パーツ2] セリフ管理クラス ---
 class DialogueManager {
     constructor() {
         this.dialogues = [];
@@ -22,8 +21,7 @@ class DialogueManager {
 
     async loadStage(stageTag) {
         try {
-            // 注意：URLは実際のDjangoのurls.pyの設定に合わせて調整してください
-            const response = await fetch(`/api/dialogue/${stageTag}/`, {
+            const response = await fetch(`/game/api/dialogue/${stageTag}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +50,7 @@ class DialogueManager {
     }
 }
 
-// --- [パーツ3] 実行 ---
+
 const manager = new DialogueManager();
 
 document.addEventListener('click', () => {
