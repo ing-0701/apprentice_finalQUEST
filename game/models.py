@@ -1,3 +1,4 @@
+
 from django.db import models
 
 class Texts(models.Model):
@@ -7,4 +8,5 @@ class Texts(models.Model):
     
     def __str__(self):
         return f"[{self.stage_tag}] {self.order}: {self.content[:10]}"
+
 
