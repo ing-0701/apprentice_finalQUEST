@@ -1,7 +1,11 @@
 import google.generativeai as genai
 import json
+import os
+from dotenv import load_dotenv
 
-genai.configure(api_key="")
+load_dotenv()
+
+genai.configure(api_key = os.getenv("API_KEY"))
 
 model = genai.GenerativeModel('gemini-2.5-flash')
 
@@ -109,4 +113,4 @@ def king(user_input, flag1, flag2, flag3): # userinput, flag1(看病), flag2(料
     except:
         return False, "(王は困惑している...)"
     
-
+print(gatekeeper("こんにちは"))
