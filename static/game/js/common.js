@@ -47,7 +47,8 @@ class DialogueManager {
             document.getElementById('dialogue-text').innerText = content;
             this.currentIndex++;
         } else {
-            document.getElementById('dialogue-text').innerText = "（おわり）";
+            document.getElementById('dialogue-box').style.display = 'none';
+            document.getElementById('next-action').style.display = 'block';
         }
     }
 }
