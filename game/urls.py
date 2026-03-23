@@ -12,6 +12,8 @@ urlpatterns = [
     path("stage3/", views.stage3, name="stage3"),
     path("epilogue/", views.epilogue, name="epilogue"),
     path('api/dialogue/<str:stage_tag>/', views.DialogueView.as_view(), name='dialogue_api'),
+    path('api/gatekeeper_reset/', views.GatekeeperResetView.as_view(), name='gatekeeper_reset_api'),
     path('api/gatekeeper_ask/<str:ask>/', views.GatekeeperView.as_view(), name='gatekeeper_api'),
+    path('api/minister_reset/', views.MinisterResetView.as_view(), name='minister_reset_api'),
     path('api/minister_ask/<str:ask>/', views.MinisterView.as_view(), name='minister_api'),
 ]

@@ -51,6 +51,14 @@ class DialogueView(View):
         })
 
         
+class GatekeeperResetView(View):
+    def post(self, request):
+        flag_now = GatekeeperFlag.objects.get(id=1)
+        flag_now.flag = False
+        flag_now.save()
+        
+        return JsonResponse({'status': 'success'})
+        
 class GatekeeperView(View):
     def post(self, request, ask):
         flag_now = GatekeeperFlag.objects.get(id=1)
@@ -75,6 +83,18 @@ class GatekeeperView(View):
                     'is_cleared': is_cleared
                 }
             })
+
+class MinisterResetView(View):
+    def post(self, request):
+        flag1_now = MinisterFlags.objects.get(id=1)
+        flag2_now = MinisterFlags.objects.get(id=2)
+        flag1_now.flag = False
+        flag2_now.flag = False
+        flag1_now.save()
+        flag2_now.save()
+        
+        return JsonResponse({'status': 'success'})
+
 
 class MinisterView(View):
     def post(self, request, ask):
