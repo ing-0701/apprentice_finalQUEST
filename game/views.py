@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
-from .models import Texts, GatekeeperFlag
-from .ai_control import gatekeeper
+from .models import Texts, GatekeeperFlag, MinisterFlags
+from .ai_control import gatekeeper, minister
 
 class StartView(View):
     def get(self, request):
@@ -52,7 +52,7 @@ class DialogueView(View):
 
         
 class GatekeeperView(View):
-    def post(self, request, stage_tag, ask):
+    def post(self, request, ask):
         flag_now = GatekeeperFlag.objects.get(id=1)
         if flag_now.flag == False:
             message, is_cleared = gatekeeper(ask)
@@ -66,6 +66,7 @@ class GatekeeperView(View):
                 }
             })
         else:
+            # gatekeeperTrueは仮で書いた関数
             message, is_cleared = gatekeeperTrue()
             
             return JsonResponse({
@@ -75,3 +76,32 @@ class GatekeeperView(View):
                 }
             })
 
+class MinisterView(View):
+    def post(self, request, ask):
+        flag1_now = MinisterFlags.objects.get(id=1)
+        flag2_now = MinisterFlags.objects.get(id=2)
+        if flag1_now.flag == False or flag2_now.flag == False:
+            message, flag1, flag2 = minister(ask, flag1_now.flag, flag2_now.flag)
+            flag1_now.flag = flag1
+            flag1_now.save()
+            flag2_now.flag = flag2
+            flag2_now.save()
+
+            return JsonResponse({
+                'result': {
+                    'message': message,
+                    'flag1': flag1,
+                    'flag2': flag2
+                }
+            })
+        else:
+            # ministerTrueは仮で書いた関数
+            message, flag1, flag2 = ministerTrue()
+            
+            return JsonResponse({
+                'result': {
+                    'message': message,
+                    'flag1': flag1,
+                    'flag2': flag2
+                }
+            })
