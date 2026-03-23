@@ -1,3 +1,4 @@
+
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
@@ -48,6 +49,7 @@ class DialogueView(View):
         return JsonResponse({
             'dialogues': dialogue_list
         })
+
         
 class GatekeeperView(View):
     def post(self, request, stage_tag, ask):
@@ -72,3 +74,4 @@ class GatekeeperView(View):
                     'is_cleared': is_cleared
                 }
             })
+

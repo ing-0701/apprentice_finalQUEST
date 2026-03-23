@@ -28,7 +28,10 @@
             <a href="{% url 'game:stage1' %}" class="btn btn-primary btn-lg">城へ向かおう！</a>
         </div>
 
-        </body>
+        {% load static %}
+        <script src="{% static 'game/js/common.js' %}"></script>
+
+    </body>
 </html>
 
 <!-- 
