@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
 from .models import Texts, GatekeeperFlag, MinisterFlags
-from .ai_control import gatekeeper, minister
+from .ai_control import gatekeeper, minister, gatekeeperTrue, ministerTrue
 
 class StartView(View):
     def get(self, request):
@@ -19,6 +19,10 @@ prologue = PrologueView.as_view()
 
 class Stage1View(View):
     def get(self, request):
+        flag_now, created = GatekeeperFlag.objects.get_or_create(id=1, defaults={'flag': False})
+        if flag_now.flag:
+            flag_now.flag = False
+            flag_now.save()
         return render(request, "game/stage1.html")
     
 stage1 = Stage1View.as_view()

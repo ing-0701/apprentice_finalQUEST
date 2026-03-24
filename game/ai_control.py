@@ -18,7 +18,7 @@ def gatekeeper(user_input): # userinput -> message, flag
     【ユーザーの発言】:"{user_input}"
 
     条件:
-    ・ユーザは姫と結婚したい市民です。
+    ・ユーザは姫と結婚したい承認です。
     ・100万~1000万の金額提示のみクリア。それ以外の質問に対しては、お金が必要であることをほのめかすような解答にしてください。
     ・返答は必ず次のJSON形式のみ。:{{"message": "セリフ", "is_cleared": true/false}}
     ・セリフの口調は統一してください。（一般市民に対する口調）
@@ -39,7 +39,7 @@ def gatekeeper(user_input): # userinput -> message, flag
         return result["message"], result["is_cleared"]
     
     except:
-        return False, "(門番は困惑している...)"
+        return "(門番は困惑している...)", False
 
 
 def minister(user_input, flag1, flag2): # userinput, flag1(政策), flag2(研究) -> message, flag1(政策), flag2(研究)
@@ -75,7 +75,7 @@ def minister(user_input, flag1, flag2): # userinput, flag1(政策), flag2(研究
         return result["message"], result["flag1"], result["flag2"]
     
     except:
-        return False, "(大臣は困惑している...)"
+        return "(大臣は困惑している...)", False, False
 
 def king(user_input, flag1, flag2, flag3): # userinput, flag1(看病), flag2(料理), flag3(王座の興味) -> flag1(看病), flag2(料理), flag3(王座の興味)
 
@@ -111,6 +111,14 @@ def king(user_input, flag1, flag2, flag3): # userinput, flag1(看病), flag2(料
         return result["message"], result["flag1"], result["flag2"], result["flag3"]
     
     except:
-        return False, "(王は困惑している...)"
-    
+        return "(王は困惑している...)", False, False, False
+
+
+def gatekeeperTrue():
+    return "早く行け", True
+
+
+def ministerTrue():
+    return "大臣は既に満足している。政策・研究は両方とも評価済みだ。", True, True
+
 print(gatekeeper("こんにちは"))
