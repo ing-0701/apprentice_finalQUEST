@@ -5,7 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
 
 django.setup()
 
-from game.models import Texts
+from game.models import Texts, GatekeeperFlag, MinisterFlags
 
 def run():
     Texts.objects.filter(stage_tag='prologue').delete()
@@ -24,6 +24,21 @@ def run():
             order=i,
             content=text
         )
+        
+        
+        
+    GatekeeperFlag.objects.all().delete()
+    GatekeeperFlag.objects.create(
+        flag=False
+    )
+    
+    MinisterFlags.objects.all().delete()
+    MinisterFlags.objects.create(
+        flag=False
+    )
+    MinisterFlags.objects.create(
+        flag=False
+    )
         
 if __name__ == '__main__':
     run()
