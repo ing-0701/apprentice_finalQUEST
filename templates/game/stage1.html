@@ -21,11 +21,14 @@
             <div class="user-input-area">
                 <input id="user-input" placeholder="ここにユーザーの入力">
                 <div class="btn-wrapper">
-                    <button id="ask-button" class="btn btn-primary" onclick="sendDialogue()">お願いします！</button>
+                    <button id="ask-button" class="btn btn-primary" 
+                    data-api-url="/game/api/gatekeeper_ask/" 
+                    data-stage="1"
+                    data-next-action-id="next-action">お願いします！</button>
                 </div>
             </div>
 
-            <div id="gatekeeper-next-action" style="display: none; margin-top: 20px;">
+            <div id="next-action" style="display: none; margin-top: 20px;">
                 <a href="{% url 'game:stage2' %}" class="btn btn-primary">城へ向かおう！</a>
             </div>
         </div>
