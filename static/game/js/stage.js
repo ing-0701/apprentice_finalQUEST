@@ -39,7 +39,7 @@ async function sendDialogue() {
         const response = await fetch(`${apiUrl}${encodeURIComponent(askText)}/`, {
             method: 'POST',
             headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
+                'X-CSRFToken': getCsrfToken(),
             }
         });
         const data = await response.json();
