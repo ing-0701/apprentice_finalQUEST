@@ -1,25 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ステージ１画面</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'game/css/stage1.css' %}">
     </head>
     <body>
         {% csrf_token %}
-        <h1>ステージ１画面</h1>
-        <p></p>
-        <h2 id="response-area">なんだお前は！ここは通さないぞ！</h2>
-        <input id="user-input" placeholder="ここにユーザーの入力">
-        <div id="ask-button">
-            <button id="dialogue-text" class="btn btn-primary" onclick="sendDialogue()">お願いします！</button>
+        <div class="stage1-wrapper">
+            <h1>ステージ1：門番の挑戦</h1>
+
+            <div class="enemy-bubble">
+                <p id="response-area">なんだお前は！ここは通さないぞ！</p>
+                <div class="enemy-arrow"></div>
+            </div>
+
+            <div class="user-input-area">
+                <input id="user-input" placeholder="ここにユーザーの入力">
+                <div class="btn-wrapper">
+                    <button id="ask-button" class="btn btn-primary" onclick="sendDialogue()">お願いします！</button>
+                </div>
+            </div>
+
+            <div id="gatekeeper-next-action" style="display: none; margin-top: 20px;">
+                <a href="{% url 'game:stage2' %}" class="btn btn-primary">城へ向かおう！</a>
+            </div>
         </div>
 
-        <div id="gatekeeper-next-action" style="display: none;">
-            <a href="{% url 'game:stage2' %}" class="btn btn-primary">城へ向かおう！</a>
-        </div>
-
-        {% load static %}
         <script src="{% static 'game/js/stage.js' %}"></script>
     </body>
 </html>
