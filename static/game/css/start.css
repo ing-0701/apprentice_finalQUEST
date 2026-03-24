@@ -1,0 +1,73 @@
+/* スタート画面用スタイル */
+
+body {
+    background-image: url('../images/start.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 暗いオーバーレイ */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+/* コンテナ */
+.container {
+    max-width: 900px;
+    width: 90%;
+    padding: 50px;
+    text-align: center;
+    z-index: 1;
+    margin-top: 0 !important;
+}
+
+/* タイトル */
+h1 {
+    text-align: center;
+    font-size: 3.5em;
+    margin-bottom: 80px;
+    color: #f03c17;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(21, 18, 0, 0.3);
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* ボタンスタイル */
+.btn-primary {
+    background-color: #6366f1 !important;
+    border: none !important;
+    padding: 20px 60px !important;
+    font-size: 1.4em !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6), 0 0 10px rgba(99, 102, 241, 0.3) !important;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.8), 0 0 15px rgba(99, 102, 241, 0.5) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) !important;
+}
