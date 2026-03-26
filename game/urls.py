@@ -16,4 +16,6 @@ urlpatterns = [
     path('api/gatekeeper_ask/<str:ask>/', views.GatekeeperView.as_view(), name='gatekeeper_api'),
     path('api/minister_reset/', views.MinisterResetView.as_view(), name='minister_reset_api'),
     path('api/minister_ask/<str:ask>/', views.MinisterView.as_view(), name='minister_api'),
+    path('api/king_reset/', views.KingResetView.as_view(), name='king_reset_api'),
+    path('api/king_ask/<str:ask>/', views.KingView.as_view(), name='king_api'),
 ]

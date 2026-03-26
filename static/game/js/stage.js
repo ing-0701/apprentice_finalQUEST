@@ -55,6 +55,9 @@ async function sendDialogue() {
         } else if (stage === "2") {
             // ステージ2はflag1とflag2の両方がtrueならクリア
             isCleared = (result.flag1 === true && result.flag2 === true);
+        } else if (stage === "3") {
+            // ステージ3はflag1とflag2とflag3のすべてがtrueならクリア
+            isCleared = (result.flag1 === true && result.flag2 === true && result.flag3 === true);
         }
 
         if (isCleared) {
