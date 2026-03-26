@@ -35,6 +35,11 @@ async function sendDialogue() {
 
     if (!askText) return;
 
+    const originalBtnText = btn.innerText;
+    responseArea.innerText = "考え中..."; // セリフエリアを「考え中」に変える
+    btn.disabled = true;                // ボタンをグレーアウトして連打防止
+    btn.innerText = "送信中...";
+
     try {
         const response = await fetch(`${apiUrl}${encodeURIComponent(askText)}/`, {
             method: 'POST',
@@ -73,9 +78,13 @@ async function sendDialogue() {
             }
         } else {
             userInputField.value = '';
+            btn.disabled = false;
+            btn.innerText = originalBtnText;
         }
 
     } catch (error) {
         console.error("通信エラーが発生しました:", error);
+        btn.disabled = false;
+        btn.innerText = originalBtnText;
     }
 }
