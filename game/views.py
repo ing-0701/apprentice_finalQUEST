@@ -65,6 +65,8 @@ class EpilogueView(View):
     
 epilogue = EpilogueView.as_view()
 
+# game/views.py
+
 class DialogueView(View):
     def post(self, request, stage_tag):
         queryset = Texts.objects.filter(stage_tag=stage_tag).order_by('order')
