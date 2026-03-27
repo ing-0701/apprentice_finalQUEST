@@ -10,13 +10,15 @@
     </head>
     <body>
         {% csrf_token %}
+        <div class="container">
         
-        <div id="dialogue-box">
-            <p id="dialogue-text">画面をクリックして物語を進めてね</p>
-        </div>
+            <div id="dialogue-box">
+                <p id="dialogue-text">画面をクリックして物語を進めてね</p>
+            </div>
 
-        <div id="next-action" style="display: none;">
-            <a href="{% url 'game:start' %}" class="btn btn-primary">タイトルへ戻る</a>
+            <div id="next-action" style="display: none;">
+                <a href="{% url 'game:start' %}" class="btn btn-primary">タイトルへ戻る</a>
+            </div>
         </div>
 
         <script src="{% static 'game/js/common.js' %}"></script>

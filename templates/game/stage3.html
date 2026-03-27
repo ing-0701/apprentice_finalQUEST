@@ -24,11 +24,23 @@
                     <button id="ask-button" class="btn btn-primary" 
                             data-api-url="/game/api/king_ask/" 
                             data-stage="3"
-                            data-next-action-id="next-action">
+                            data-next-action-id="start-story-btn">
                         お願いします！
                     </button>
                 </div>
             </div>
+
+            <div id="start-story-btn" style="display: none; margin-top: 20px;">
+                <button class="btn btn-warning" id="go-to-dialogue">次へ</button>
+            </div>
+        
+            <div id="love-game-section" style="display: none; text-align: center; margin-top: 20px;">
+                <div class="progress mb-3" style="height: 30px;">
+                    <div id="love-gauge" class="progress-bar bg-danger" role="progressbar" style="width: 0%;"></div>
+                </div>
+                <button id="love-button" class="btn btn-danger btn-lg">愛しています！！！</button>
+            </div>
+            
 
             <div id="next-action" style="display: none; margin-top: 20px;">
                 <a href="{% url 'game:epilogue' %}" class="btn btn-success">エピローグへ進む</a>
@@ -38,6 +50,8 @@
         <script src="{% static 'game/js/common.js' %}"></script>
 
         <script src="{% static 'game/js/stage.js' %}"></script>
+
+        <script src="{% static 'game/js/stage3.js' %}"></script>
     </body>
 </html>
 
