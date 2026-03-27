@@ -1,3 +1,4 @@
+// CSRFトークン取得用の共通関数
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -13,38 +14,61 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// ページが読み込まれたらボタンに機能を割り当てる
+document.addEventListener('DOMContentLoaded', () => {
+    const submitBtn = document.getElementById('ask-button');
+    if (submitBtn) {
+        submitBtn.addEventListener('click', sendDialogue);
+    }
+});
+
 async function sendDialogue() {
-    // 1. inputの内容をキャッチ
+    // ボタンからデータを取得
+    const btn = document.getElementById('ask-button');
+    const apiUrl = btn.dataset.apiUrl; 
+    const stage = btn.dataset.stage;   
+    const nextActionId = btn.dataset.nextActionId; // 次のボタンのIDを取得
+
     const userInputField = document.getElementById('user-input');
+    const responseArea = document.getElementById('response-area');
     const askText = userInputField.value;
 
-    if (!askText) return; // 空入力なら何もしない
+    if (!askText) return;
 
     try {
-        // 2. DjangoのGatekeeperViewへ送信
-        // 定義されているURL構造に合わせてパスを修正
-        const response = await fetch(`/game/api/gatekeeper_ask/${encodeURIComponent(askText)}/`, {
+        const response = await fetch(`${apiUrl}${encodeURIComponent(askText)}/`, {
             method: 'POST',
             headers: {
-                'X-CSRFToken': getCookie('csrftoken'), // または getCsrfToken()
+                'X-CSRFToken': getCsrfToken(),
             }
         });
         const data = await response.json();
         const result = data.result;
 
-        // 3. メッセージを画面に表示
-        document.getElementById('response-area').innerText = result.message;
+        // メッセージを表示
+        responseArea.innerText = result.message;
 
-        // 4. クリア判定（trueならボタンを切り替え）
-        if (result.is_cleared === true) {
-            // 入力欄と送信ボタンを隠す
+        // ステージごとのクリア判定
+        let isCleared = false;
+        if (stage === "1") {
+            isCleared = (result.is_cleared === true);
+        } else if (stage === "2") {
+            // ステージ2はflag1とflag2の両方がtrueならクリア
+            isCleared = (result.flag1 === true && result.flag2 === true);
+        }
+
+        if (isCleared) {
+            // 入力エリアを隠す
             userInputField.style.display = 'none';
-            document.getElementById('ask-button').style.display = 'none';
+            // ボタンを包んでいる親要素（btn-wrapperなど）を隠す
+            btn.closest('div').style.display = 'none'; 
             
-            // 次のステージへのボタンを表示
-            document.getElementById('gatekeeper-next-action').style.display = 'block';
+            // 次のアクションを表示（HTML側のデータ属性で指定したIDを出す）
+            const nextAction = document.getElementById(nextActionId);
+            if (nextAction) {
+                nextAction.style.display = 'block';
+            }
         } else {
-            // 失敗なら入力欄を空にして次を促す
             userInputField.value = '';
         }
 

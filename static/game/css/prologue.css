@@ -1,0 +1,125 @@
+/* プロローグ画面用スタイル */
+
+body {
+    background-image: url('../images/start.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 暗いオーバーレイ */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+
+/* コンテナ */
+.container {
+    max-width: 900px;
+    width: 90%;
+    padding: 50px;
+    text-align: center;
+    z-index: 1;
+    margin-top: 0 !important;
+}
+
+
+
+/* ダイアログボックス */
+#dialogue-box {
+    min-height: 120px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    margin: 0 auto 30px auto;
+    cursor: pointer;
+    border: 2px solid rgba(179, 168, 232, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(179, 168, 232, 0.1);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dialogue-box:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(179, 168, 232, 0.8);
+    box-shadow: 0 6px 20px rgba(179, 168, 232, 0.4), inset 0 0 30px rgba(179, 168, 232, 0.2);
+}
+
+#dialogue-box:active {
+    transform: scale(0.98);
+}
+
+/* ダイアログテキスト */
+#dialogue-text {
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.8;
+    font-size: 1.3em !important;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* 次のアクション（ボタン表示エリア） */
+#next-action {
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+    margin-top: 30px;
+}
+
+/* ボタンスタイル */
+.btn-primary {
+    background-color: #6366f1 !important;
+    border: none !important;
+    padding: 15px 50px !important;
+    font-size: 1.2em !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6), 0 0 10px rgba(99, 102, 241, 0.3) !important;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.8), 0 0 15px rgba(99, 102, 241, 0.5) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
