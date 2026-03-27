@@ -2,8 +2,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
-from .models import Texts, GatekeeperFlag, MinisterFlags
-from .ai_control import gatekeeper, minister, gatekeeperTrue, ministerTrue
+from .models import Texts, GatekeeperFlag, MinisterFlags, KingFlags
+from .ai_control import gatekeeper, minister, gatekeeperTrue, ministerTrue, king, kingTrue
 
 class StartView(View):
     def get(self, request):
@@ -29,12 +29,32 @@ stage1 = Stage1View.as_view()
 
 class Stage2View(View):
     def get(self, request):
+        flag1_now, created1 = MinisterFlags.objects.get_or_create(id=1, defaults={'flag': False})
+        flag2_now, created2 = MinisterFlags.objects.get_or_create(id=2, defaults={'flag': False})
+        if flag1_now.flag:
+            flag1_now.flag = False
+            flag1_now.save()
+        if flag2_now.flag:
+            flag2_now.flag = False
+            flag2_now.save()
         return render(request, "game/stage2.html")
     
 stage2 = Stage2View.as_view()
 
 class Stage3View(View):
     def get(self, request):
+        flag1_now, created1 = KingFlags.objects.get_or_create(id=1, defaults={'flag': False})
+        flag2_now, created2 = KingFlags.objects.get_or_create(id=2, defaults={'flag': False})
+        flag3_now, created3 = KingFlags.objects.get_or_create(id=3, defaults={'flag': False})
+        if flag1_now.flag:
+            flag1_now.flag = False
+            flag1_now.save()
+        if flag2_now.flag:
+            flag2_now.flag = False
+            flag2_now.save()
+        if flag3_now.flag:
+            flag3_now.flag = False
+            flag3_now.save()
         return render(request, "game/stage3.html")
     
 stage3 = Stage3View.as_view()
@@ -127,5 +147,54 @@ class MinisterView(View):
                     'message': message,
                     'flag1': flag1,
                     'flag2': flag2
+                }
+            })
+
+class KingResetView(View):
+    def post(self, request):
+        flag1_now = KingFlags.objects.get(id=1)
+        flag2_now = KingFlags.objects.get(id=2)
+        flag3_now = KingFlags.objects.get(id=3)
+        flag1_now.flag = False
+        flag2_now.flag = False
+        flag3_now.flag = False
+        flag1_now.save()
+        flag2_now.save()
+        flag3_now.save()
+        
+        return JsonResponse({'status': 'success'})
+    
+class KingView(View):
+    def post(self, request, ask):
+        flag1_now = KingFlags.objects.get(id=1)
+        flag2_now = KingFlags.objects.get(id=2)
+        flag3_now = KingFlags.objects.get(id=3)
+        if flag1_now.flag == False or flag2_now.flag == False or flag3_now.flag == False:
+            message, flag1, flag2, flag3 = king(ask, flag1_now.flag, flag2_now.flag, flag3_now.flag)
+            flag1_now.flag = flag1
+            flag1_now.save()
+            flag2_now.flag = flag2
+            flag2_now.save()
+            flag3_now.flag = flag3
+            flag3_now.save()
+
+            return JsonResponse({
+                'result': {
+                    'message': message,
+                    'flag1': flag1,
+                    'flag2': flag2,
+                    'flag3': flag3
+                }
+            })
+        else:
+            # kingTrueは仮で書いた関数
+            message, flag1, flag2, flag3 = kingTrue()
+            
+            return JsonResponse({
+                'result': {
+                    'message': message,
+                    'flag1': flag1,
+                    'flag2': flag2,
+                    'flag3': flag3
                 }
             })

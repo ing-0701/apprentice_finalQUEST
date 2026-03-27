@@ -21,3 +21,9 @@ class MinisterFlags(models.Model):
     
     def __str__(self):
         return f"flag{self.id} is {self.flag}"
+
+class KingFlags(models.Model):
+    flag = models.BooleanField()
+    
+    def __str__(self):
+        return f"flag{self.id} is {self.flag}"
