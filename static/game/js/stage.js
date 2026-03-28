@@ -1,4 +1,3 @@
-// CSRFトークン取得用の共通関数
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -52,7 +51,18 @@ async function sendDialogue() {
 
         // メッセージを表示
         responseArea.innerText = result.message;
-
+        if (result.flag1) {
+            document.querySelector('.flag1').classList.remove('flag-off');
+            document.querySelector('.flag1').classList.add('flag-on');
+        }
+        if (result.flag2) {
+            document.querySelector('.flag2').classList.remove('flag-off');
+            document.querySelector('.flag2').classList.add('flag-on');
+        }
+        if (result.flag3) {
+            document.querySelector('.flag3').classList.remove('flag-off');
+            document.querySelector('.flag3').classList.add('flag-on');
+        }
         // ステージごとのクリア判定
         let isCleared = false;
         if (stage === "1") {

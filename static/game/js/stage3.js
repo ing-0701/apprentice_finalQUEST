@@ -75,9 +75,9 @@ document.addEventListener('click', (e) => {
 
 // 3. 連打ボタン
 let loveCount = 0;
-let decreaseInterval = null;  // ゲージ減少用タイマー
-let countdownInterval = null; // 5秒制限用タイマー
-let remainingTime = 5;        // 制限時間（秒）
+let decreaseInterval = null;  
+let countdownInterval = null; 
+let remainingTime = 5;        
 
 // 1. セリフ終了時の処理
 function handleDialogueEnd(tag) {
