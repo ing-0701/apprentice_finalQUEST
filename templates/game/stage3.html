@@ -13,6 +13,10 @@
         <div class="stage3-wrapper">
             <h1>ステージ3：王の試練</h1>
 
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag1 flag-off">
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag2 flag-off">
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag3 flag-off">
+
             <div class="enemy-bubble">
                 <p id="response-area">お前は誰だ！姫に近づくな！</p>
                 <div class="enemy-arrow"></div>
@@ -25,7 +29,7 @@
                             data-api-url="/game/api/king_ask/" 
                             data-stage="3"
                             data-next-action-id="start-story-btn">
-                        お願いします！
+                        送信
                     </button>
                 </div>
             </div>
