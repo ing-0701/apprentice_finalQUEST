@@ -13,6 +13,8 @@
         <div class="stage1-wrapper">
             <h1>ステージ1：門番の挑戦</h1>
 
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag flag-off">
+
             <div class="enemy-bubble">
                 <p id="response-area">なんだお前は！ここは通さないぞ！</p>
                 <div class="enemy-arrow"></div>
@@ -24,7 +26,7 @@
                     <button id="ask-button" class="btn btn-primary" 
                     data-api-url="/game/api/gatekeeper_ask/" 
                     data-stage="1"
-                    data-next-action-id="next-action">お願いします！</button>
+                    data-next-action-id="next-action">送信</button>
                 </div>
             </div>
 

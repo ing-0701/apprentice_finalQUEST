@@ -26,7 +26,7 @@ def run():
         )
         
         
-    Texts.objects.filter(stage_tag='stage3').delete()
+    Texts.objects.filter(stage_tag='stage3_clear_before').delete()
     
     stage3_texts = [
         "じゃが、最後に確かめたいことがある。",
@@ -37,7 +37,7 @@ def run():
     
     for i, text in enumerate(stage3_texts, start=1):
         Texts.objects.create(
-            stage_tag='stage3',
+            stage_tag='stage3_clear_before',
             order=i,
             content=text
         )

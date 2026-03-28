@@ -13,6 +13,9 @@
         <div class="stage2-wrapper">
             <h1>ステージ2：大臣の試練</h1>
 
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag1 flag-off">
+            <img src="{% static 'game/images/star.png' %}" alt="星" class="flag2 flag-off">
+
             <div class="enemy-bubble">
                 <p id="response-area">なんだお前は！つまみ出すぞ！</p>
                 <div class="enemy-arrow"></div>
@@ -25,7 +28,7 @@
                             data-api-url="/game/api/minister_ask/" 
                             data-stage="2"
                             data-next-action-id="next-action">
-                        お願いします！
+                        送信
                     </button>
                 </div>
             </div>

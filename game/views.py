@@ -65,6 +65,8 @@ class EpilogueView(View):
     
 epilogue = EpilogueView.as_view()
 
+# game/views.py
+
 class DialogueView(View):
     def post(self, request, stage_tag):
         queryset = Texts.objects.filter(stage_tag=stage_tag).order_by('order')
@@ -83,28 +85,50 @@ class GatekeeperResetView(View):
         
         return JsonResponse({'status': 'success'})
         
+# class GatekeeperView(View):
+#     def post(self, request, ask):
+#         flag_now = GatekeeperFlag.objects.get(id=1)
+#         if flag_now.flag == False:
+#             message, is_cleared = gatekeeper(ask)
+#             flag_now.flag = is_cleared
+#             flag_now.save()
+
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'is_cleared': is_cleared
+#                 }
+#             })
+#         else:
+#             # gatekeeperTrueは仮で書いた関数
+#             message, is_cleared = gatekeeperTrue()
+            
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'is_cleared': is_cleared
+#                 }
+#             })
+
+#デバッグ用に、何を入力しても成功するモード
 class GatekeeperView(View):
     def post(self, request, ask):
         flag_now = GatekeeperFlag.objects.get(id=1)
         if flag_now.flag == False:
-            message, is_cleared = gatekeeper(ask)
-            flag_now.flag = is_cleared
+            flag_now.flag = True
             flag_now.save()
 
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'is_cleared': is_cleared
+                    'message': "デバッグ中につき、自動成功",
+                    'is_cleared': True
                 }
             })
         else:
-            # gatekeeperTrueは仮で書いた関数
-            message, is_cleared = gatekeeperTrue()
-            
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'is_cleared': is_cleared
+                    'message': "デバッグ中につき、自動成功",
+                    'is_cleared': True
                 }
             })
 
@@ -120,33 +144,60 @@ class MinisterResetView(View):
         return JsonResponse({'status': 'success'})
 
 
+# class MinisterView(View):
+#     def post(self, request, ask):
+#         flag1_now = MinisterFlags.objects.get(id=1)
+#         flag2_now = MinisterFlags.objects.get(id=2)
+#         if flag1_now.flag == False or flag2_now.flag == False:
+#             message, flag1, flag2 = minister(ask, flag1_now.flag, flag2_now.flag)
+#             flag1_now.flag = flag1
+#             flag1_now.save()
+#             flag2_now.flag = flag2
+#             flag2_now.save()
+
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'flag1': flag1,
+#                     'flag2': flag2
+#                 }
+#             })
+#         else:
+#             # ministerTrueは仮で書いた関数
+#             message, flag1, flag2 = ministerTrue()
+            
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'flag1': flag1,
+#                     'flag2': flag2
+#                 }
+#             })
+
+#デバッグ用に、何を入力しても成功するモード
 class MinisterView(View):
     def post(self, request, ask):
         flag1_now = MinisterFlags.objects.get(id=1)
         flag2_now = MinisterFlags.objects.get(id=2)
         if flag1_now.flag == False or flag2_now.flag == False:
-            message, flag1, flag2 = minister(ask, flag1_now.flag, flag2_now.flag)
-            flag1_now.flag = flag1
+            flag1_now.flag = True
             flag1_now.save()
-            flag2_now.flag = flag2
+            flag2_now.flag = True
             flag2_now.save()
 
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'flag1': flag1,
-                    'flag2': flag2
+                    'message': "デバッグ中につき、自動成功",
+                    'flag1': True,
+                    'flag2': True
                 }
             })
         else:
-            # ministerTrueは仮で書いた関数
-            message, flag1, flag2 = ministerTrue()
-            
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'flag1': flag1,
-                    'flag2': flag2
+                    'message': "デバッグ中につき、自動成功",
+                    'flag1': True,
+                    'flag2': True
                 }
             })
 
@@ -164,37 +215,69 @@ class KingResetView(View):
         
         return JsonResponse({'status': 'success'})
     
+# class KingView(View):
+#     def post(self, request, ask):
+#         flag1_now = KingFlags.objects.get(id=1)
+#         flag2_now = KingFlags.objects.get(id=2)
+#         flag3_now = KingFlags.objects.get(id=3)
+#         if flag1_now.flag == False or flag2_now.flag == False or flag3_now.flag == False:
+#             message, flag1, flag2, flag3 = king(ask, flag1_now.flag, flag2_now.flag, flag3_now.flag)
+#             flag1_now.flag = flag1
+#             flag1_now.save()
+#             flag2_now.flag = flag2
+#             flag2_now.save()
+#             flag3_now.flag = flag3
+#             flag3_now.save()
+
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'flag1': flag1,
+#                     'flag2': flag2,
+#                     'flag3': flag3
+#                 }
+#             })
+#         else:
+#             # kingTrueは仮で書いた関数
+#             message, flag1, flag2, flag3 = kingTrue()
+            
+#             return JsonResponse({
+#                 'result': {
+#                     'message': message,
+#                     'flag1': flag1,
+#                     'flag2': flag2,
+#                     'flag3': flag3
+#                 }
+#             })
+
+#デバッグ用に、何を入力しても成功するモード
 class KingView(View):
     def post(self, request, ask):
         flag1_now = KingFlags.objects.get(id=1)
         flag2_now = KingFlags.objects.get(id=2)
         flag3_now = KingFlags.objects.get(id=3)
         if flag1_now.flag == False or flag2_now.flag == False or flag3_now.flag == False:
-            message, flag1, flag2, flag3 = king(ask, flag1_now.flag, flag2_now.flag, flag3_now.flag)
-            flag1_now.flag = flag1
+            flag1_now.flag = True
             flag1_now.save()
-            flag2_now.flag = flag2
+            flag2_now.flag = True
             flag2_now.save()
-            flag3_now.flag = flag3
+            flag3_now.flag = True
             flag3_now.save()
 
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'flag1': flag1,
-                    'flag2': flag2,
-                    'flag3': flag3
+                    'message': "デバッグ中につき、自動成功",
+                    'flag1': True,
+                    'flag2': True,
+                    'flag3': True
                 }
             })
         else:
-            # kingTrueは仮で書いた関数
-            message, flag1, flag2, flag3 = kingTrue()
-            
             return JsonResponse({
                 'result': {
-                    'message': message,
-                    'flag1': flag1,
-                    'flag2': flag2,
-                    'flag3': flag3
+                    'message': "デバッグ中につき、自動成功",
+                    'flag1': True,
+                    'flag2': True,
+                    'flag3': True
                 }
             })

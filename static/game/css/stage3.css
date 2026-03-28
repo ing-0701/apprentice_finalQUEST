@@ -145,3 +145,59 @@ h1 {
     border: none !important;
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45) !important;
 }
+
+#go-to-dialogue {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    /* ask-buttonと同じ色を指定 */
+    background-color: #6366f1 !important; 
+    color: #fff !important;
+    border: none !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* ホバー時の挙動もask-buttonに合わせる */
+#go-to-dialogue:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(99, 102, 241, 0.6) !important;
+    background-color: #4f46e5 !important; /* 少し濃い青 */
+}
+
+.flag1{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 235px;
+}
+
+.flag2{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 335px;
+}
+
+.flag3{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 435px;
+}
+
+.flag-off {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+.flag-on {
+    filter: grayscale(0%);
+    opacity: 1.0;
+}
