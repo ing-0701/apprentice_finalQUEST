@@ -66,30 +66,16 @@ async function sendDialogue() {
         }
 
         if (isCleared) {
-            // 入力エリアを隠す
+            // クリアした場合：入力欄とボタンの親要素を隠し、次のボタンを出す
             userInputField.style.display = 'none';
-            // ボタンを包んでいる親要素（btn-wrapperなど）を隠す
-            btn.closest('div').style.display = 'none'; 
-            
-            // 次のアクションを表示（HTML側のデータ属性で指定したIDを出す）
-            if (isCleared) {
-                // 全ステージ共通：入力欄と送信ボタンを隠す
-                userInputField.style.display = 'none';
-                btn.closest('.btn-wrapper').style.display = 'none'; 
-    
-                // 全ステージ共通：HTMLで指定された「次へ」ボタンを表示する
-                // ステージ1なら「城へ」、ステージ3なら「次へ（物語開始）」が表示される
-                const nextAction = document.getElementById(nextActionId);
-                if (nextAction) {
-                    nextAction.style.display = 'block';
-                }
-            } else {
-                // クリアしていない場合
-                userInputField.value = '';
-                btn.disabled = false;
-                btn.innerText = originalBtnText;
+            btn.closest('.btn-wrapper').style.display = 'none'; 
+        
+            const nextAction = document.getElementById(nextActionId);
+            if (nextAction) {
+                nextAction.style.display = 'block';
             }
         } else {
+            // クリアしていない場合：入力欄を空にしてボタンを元に戻す
             userInputField.value = '';
             btn.disabled = false;
             btn.innerText = originalBtnText;
