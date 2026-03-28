@@ -153,3 +153,30 @@ h1 {
     transform: translateY(-2px);
 }
 
+.flag1{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 235px;
+}
+
+.flag2{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 335px;
+}
+
+.flag-off {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+.flag-on {
+    filter: grayscale(0%);
+    opacity: 1.0;
+}

@@ -164,3 +164,40 @@ h1 {
     box-shadow: 0 8px 18px rgba(99, 102, 241, 0.6) !important;
     background-color: #4f46e5 !important; /* 少し濃い青 */
 }
+
+.flag1{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 235px;
+}
+
+.flag2{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 335px;
+}
+
+.flag3{
+    width: 100px;
+    height: auto; 
+    object-fit: contain;
+    position: absolute;
+    bottom: 100px;
+    right: 435px;
+}
+
+.flag-off {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+.flag-on {
+    filter: grayscale(0%);
+    opacity: 1.0;
+}
