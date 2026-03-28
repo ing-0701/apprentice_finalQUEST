@@ -36,10 +36,17 @@ body::before {
 }
 
 h1 {
-    margin: 24px 0 24px 0;
-    font-size: 2.6rem;
-    color: #f32a5f;
-    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.75);
+    margin: 60px 0 24px 0;
+    font-size: 3.5rem;
+    color: #efd346; /* シルバー系 */
+    text-transform: uppercase;
+    
+    /* 上に白、下に黒の細い影を入れて立体感を出す */
+    text-shadow: 
+        -1.5px -1.5px 0px #feffd6, 
+        1.5px 1.5px 0px #763b00,
+        3px 3px 10px rgba(34, 20, 2, 0.8);
+    font-family: 'Libre Baskerville', 'Sawarabi Mincho', sans-serif !important;
 }
 
 .enemy-bubble {
@@ -88,7 +95,7 @@ h1 {
 
 .user-input-area {
     position: absolute;
-    bottom: 24px;
+    bottom: 79px;
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
@@ -158,7 +165,7 @@ h1 {
     height: auto; 
     object-fit: contain;
     position: absolute;
-    bottom: 100px;
+    bottom: 155px;
     right: 235px;
 }
 
@@ -167,7 +174,7 @@ h1 {
     height: auto; 
     object-fit: contain;
     position: absolute;
-    bottom: 100px;
+    bottom: 155px;
     right: 335px;
 }
 
@@ -179,4 +186,29 @@ h1 {
 .flag-on {
     filter: grayscale(0%);
     opacity: 1.0;
+}
+
+/* ボタンスタイル */
+.btn-primary {
+    margin-top: 420px;
+    background-color: #6366f1 !important;
+    border: none !important;
+    padding: 15px 35px !important;
+    font-size: 1.2em !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6), 0 0 10px rgba(99, 102, 241, 0.3) !important;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    /* font-family: 'Cormorant Garamond', serif !important; */
+}
+
+.btn-primary:hover {
+    background-color: #4f46e5 !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.8), 0 0 15px rgba(99, 102, 241, 0.5) !important;
+}
+
+.btn-primary:active {
+    transform: translateY(-1px) !important;
 }
