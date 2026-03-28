@@ -7,7 +7,10 @@
         <title>ステージ３画面</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'game/css/stage3.css' %}">
-    </head>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Balthazar&family=Baskervville:ital,wght@0,400..700;1,400..700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Jacquard+12&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Sawarabi+Mincho&family=UnifrakturMaguntia&family=Zen+Antique+Soft&display=swap" rel="stylesheet">    </head>
     <body>
         {% csrf_token %}
         <div class="stage3-wrapper">
@@ -35,7 +38,7 @@
                 </div>
             </div>
 
-            <div id="start-story-btn" style="display: none; margin-top: 20px;">
+            <div id="start-story-btn" style="display: none; margin-top: 450px;">
                 <button class="btn btn-warning" id="go-to-dialogue">次へ</button>
             </div>
         
@@ -47,8 +50,8 @@
             </div>
             
 
-            <div id="next-action" style="display: none; margin-top: 20px;">
-                <a href="{% url 'game:epilogue' %}" class="btn btn-success">エピローグへ進む</a>
+            <div id="next-action" style="display: none;">
+                <a href="{% url 'game:epilogue' %}" class="btn btn-primary">エピローグへ進む</a>
             </div>
         </div>
 
