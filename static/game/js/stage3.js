@@ -5,7 +5,6 @@ class DialogueManager {
         this.currentTag = ''; // currentTagを初期化
     }
 
-    // stage3.js の loadStage 内を少し補強
 async loadStage(stageTag) {
     this.currentTag = stageTag;
     try {
@@ -17,11 +16,6 @@ async loadStage(stageTag) {
             }
         });
         const data = await response.json();
-        
-        if (!data.dialogues || data.dialogues.length === 0) {
-            console.error(`警告: タグ "${stageTag}" のセリフが1件も見つかりませんでした。`);
-            return; // データがないなら何もしない（勝手に進ませない）
-        }
 
         this.dialogues = data.dialogues;
         this.currentIndex = 0;
@@ -32,16 +26,13 @@ async loadStage(stageTag) {
 }
 
     displayNext() {
-        // 表示先のIDを 'response-area' に統一（HTMLと合わせてください）
         const targetElement = document.getElementById('response-area');
         
         if (this.currentIndex < this.dialogues.length) {
             const content = this.dialogues[this.currentIndex];
             targetElement.innerText = content;
             this.currentIndex++;
-            console.log("セリフ表示中:", this.currentIndex);
         } else {
-            console.log("全セリフ終了。次のステップへ");
             handleDialogueEnd(this.currentTag);
         }
     }
@@ -57,9 +48,8 @@ function handleDialogueEnd(tag) {
     } 
 }
 
-// --- 修正ポイント：イベントの制御 ---
 
-// 1. 「次へ」ボタン
+// 1. イベントリスナーの設定
 document.getElementById('go-to-dialogue').addEventListener('click', (e) => {
     // 【重要】このボタンクリックが「documentのクリック」として扱われないように防ぐ
     e.stopPropagation(); 
