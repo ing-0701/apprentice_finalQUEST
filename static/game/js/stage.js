@@ -51,6 +51,10 @@ async function sendDialogue() {
 
         // メッセージを表示
         responseArea.innerText = result.message;
+        if (result.is_cleared){
+            document.querySelector('.flag').classList.remove('flag-off');
+            document.querySelector('.flag').classList.add('flag-on');
+        }
         if (result.flag1) {
             document.querySelector('.flag1').classList.remove('flag-off');
             document.querySelector('.flag1').classList.add('flag-on');
